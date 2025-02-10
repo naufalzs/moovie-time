@@ -2,8 +2,9 @@
   <nav class="relative bg-[#fff]/5 w-full z-50 py-4">
     <div class="mx-auto w-full max-w-7xl flex items-center justify-between px-4 lg:px-2 gap-10">
       <div class="flex grow items-center gap-8">
-        <!-- <h1 class="text-2xl font-bold">Moovie</h1> -->
-        <img alt="MoovieTime logo" src="@/assets/moovie-time-logo.svg" width="112" height="31" />
+        <router-link :to="`/`">
+          <img alt="MoovieTime logo" src="@/assets/moovie-time-logo.svg" width="112" height="31" />
+        </router-link>
         <label
           class="relative w-full bg-[#24282F] px-3 py-[6px] rounded-[4px] focus-within:ring-1 focus-within:ring-gray-600 flex gap-3 justify-between"
         >
@@ -23,9 +24,11 @@
           <img alt="categories icon" src="@/assets/icon-categories.svg" width="20" height="16" />
           Categories
         </li>
-        <li class="cursor-pointer uppercase hover:text-white">Movies</li>
-        <li class="cursor-pointer uppercase hover:text-white">TV Shows</li>
-        <li class="cursor-pointer uppercase hover:text-white">Login</li>
+        <router-link :to="`/explore`">
+          <li class="cursor-pointer uppercase hover:text-white">Movies</li>
+        </router-link>
+        <li class="cursor-not-allowed uppercase hover:text-white">TV Shows</li>
+        <li class="cursor-not-allowed uppercase hover:text-white">Login</li>
       </ul>
     </div>
   </nav>
