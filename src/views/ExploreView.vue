@@ -27,13 +27,13 @@
             <div class="px-4.5 py-[20px] font-semibold">Genres</div>
             <hr />
             <div class="px-4.5 py-[20px] text-sm font-normal">
-              <div v-for="genre in genres" :key="genre.value">
+              <div v-for="genre in genres" :key="genre.id">
                 <label class="cursor-pointer flex justify-between items-center mb-2"
-                  >{{ genre.label }}
+                  >{{ genre.name }}
                   <div class="relative">
                     <input
                       type="checkbox"
-                      :value="genre.value"
+                      :value="genre.id"
                       v-model="selectedGenres"
                       class="w-3.5 h-3.5 cursor-pointer appearance-none peer checked:bg-[#E74C3C] bg-white rounded-sm focus:ring-[1px] ring-[#fff]/50"
                     />
@@ -57,7 +57,7 @@
           </div>
           <div class="flex flex-col items-center">
             <div class="w-fit grid grid-cols-4 gap-6">
-              <Card v-for="(movie, index) in movies" :key="index" />
+              <Card v-for="(movie, index) in movies" :data="movie" :key="index" />
             </div>
             <div
               class="cursor-pointer bg-[#FF0000] hover:bg-red-400 mt-16 w-fit font-semibold py-2 px-10 rounded-full flex items-center justify-center transition"
@@ -74,6 +74,7 @@
 <script>
 import Navbar from '../components/Navbar.vue'
 import Card from '../components/Card.vue'
+import api from '../http/api'
 
 export default {
   components: {
@@ -82,35 +83,43 @@ export default {
   },
   data() {
     return {
-      movies: [
-        { title: 'Movie 1', year: 2023 },
-        { title: 'Movie 2', year: 2022 },
-        { title: 'Movie 3', year: 2021 },
-        { title: 'Movie 4', year: 2020 },
-        { title: 'Movie 5', year: 2019 },
-        { title: 'Movie 6', year: 2018 },
-        { title: 'Movie 7', year: 2017 },
-        { title: 'Movie 8', year: 2016 },
-        { title: 'Movie 9', year: 2017 },
-        { title: 'Movie 10', year: 2016 },
-        { title: 'Movie 11', year: 2016 },
-        { title: 'Movie 12', year: 2016 },
-      ],
-      selectedGenres: ['action'], // Default selected
-      genres: [
-        { label: 'Action', value: 'action' },
-        { label: 'Adventure', value: 'adventure' },
-        { label: 'Animation', value: 'animation' },
-        { label: 'Comedy', value: 'comedy' },
-        { label: 'Crime', value: 'crime' },
-        { label: 'Documentary', value: 'documentary' },
-        { label: 'Drama', value: 'drama' },
-        { label: 'Family', value: 'family' },
-        { label: 'Fantasy', value: 'fantasy' },
-        { label: 'History', value: 'history' },
-        { label: 'Horror', value: 'horror' },
-      ],
+      movies: [],
+      selectedGenres: [],
+      genres: [],
     }
+  },
+  mounted() {
+    this.fetchGenres()
+    this.fetchMovies()
+  },
+  methods: {
+    async fetchMovies() {
+      try {
+        const genreQuery = this.selectedGenres.length
+          ? `&with_genres=${this.selectedGenres.join(',')}`
+          : ''
+
+        const { data } = await api.get(
+          `discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc${genreQuery}`,
+        )
+        this.movies = data?.results || []
+      } catch (error) {
+        console.error('Error fetching movies:', error)
+      }
+    },
+    async fetchGenres() {
+      try {
+        const { data } = await api.get(`/genre/movie/list?language=en`)
+        this.genres = data?.genres || []
+      } catch (error) {
+        console.error('Error fetching movies:', error)
+      }
+    },
+  },
+  watch: {
+    selectedGenres() {
+      this.fetchMovies()
+    },
   },
 }
 </script>
