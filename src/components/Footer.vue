@@ -1,0 +1,14 @@
+<template>
+  <footer class="bg-[#15191F] text-[#929292] w-full fixed bottom-0 py-[65px]">
+    <div class="max-w-7xl w-full mx-auto px-4 lg:px-2 flex justify-between items-center">
+      <div>© 2021 MoovieTime. All rights reserved.</div>
+      <img
+        alt="MoovieTime logo footer"
+        src="@/assets/moovie-time-logo-gray.svg"
+        width="88"
+        height="24"
+      />
+      <div>Made with Vue</div>
+    </div>
+  </footer>
+</template>
