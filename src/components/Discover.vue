@@ -1,5 +1,5 @@
 <template>
-  <div class="relative pb-[115px]">
+  <section class="relative pb-[115px]">
     <div class="absolute top-0 w-full bg-[#292E36] h-[330px] z-0"></div>
     <div class="pt-[90px] relative max-w-7xl mx-auto px-4 lg:px-2">
       <div class="mb-3 w-[112px] h-[6px] bg-[#E74C3C] z-10"></div>
@@ -29,7 +29,7 @@
         <Card v-for="(movie, index) in movies" :key="index" />
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[#1E232B] py-12 overflow-hidden">
+  <section class="bg-[#1E232B] py-12 overflow-hidden">
     <swiper
       :slides-per-view="'2.5'"
       :space-between="10"
@@ -37,7 +37,7 @@
         </div>
       </swiper-slide>
     </swiper>
-  </div>
+  </section>
 </template>
 
 <script>
