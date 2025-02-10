@@ -4,19 +4,19 @@
       :slides-per-view="'2.5'"
       :space-between="10"
       :centeredSlides="true"
-      :loop="true"
+      :loop="false"
       :pagination="{ clickable: true }"
       class="w-full px-6"
     >
       <!-- :pagination="pagination" -->
-      <swiper-slide v-for="(movie, index) in movies" :key="index" class="w-[600px]">
+      <swiper-slide v-for="(movie, index) in updatedSliderItems" :key="index" class="w-[600px]">
         <div class="w-full h-[360px] overflow-hidden flex justify-center items-center">
           <div
             class="relative text-white w-[520px] h-[320px] bg-black shadow-lg px-5 py-7 text-base float-right"
           >
             <div class="absolute -top-5 -left-[22px] w-[246px] h-[360px]">
               <img
-                src="https://images.unsplash.com/photo-1738924349706-14d70715e236?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                :src="`https://image.tmdb.org/t/p/w300/${movie?.poster_path}`"
                 alt=""
                 class="inset-0 w-full h-full object-cover"
               />
@@ -25,12 +25,14 @@
               <div class="flex gap-1">
                 <img alt="star logo" src="@/assets/icon-star.svg" width="16" height="16" />
 
-                <p class="font-bold">{{ movie.rating }}</p>
+                <p class="font-bold">{{ movie?.vote_average?.toFixed(1) }}</p>
               </div>
               <div class="mt-1 flex flex-col gap-3">
-                <h3 class="text-3xl font-medium">{{ movie.title }}</h3>
-                <p class="">{{ movie.year }} • {{ movie.genre }}</p>
-                <p class="text-xs">{{ movie.description }}</p>
+                <h3 class="text-3xl font-medium">{{ movie?.original_title }}</h3>
+                <p class="">
+                  {{ movie?.release_date?.split('-')[0] }} • {{ movie.genre || 'Sci-fi' }}
+                </p>
+                <p class="text-xs line-clamp-5">{{ movie?.overview }}</p>
               </div>
             </div>
           </div>
@@ -60,13 +62,13 @@ export default {
     Swiper,
     SwiperSlide,
   },
-  setup() {
-    const onSwiper = (swiper) => {
-      console.log(swiper)
-    }
-    const onSlideChange = () => {
-      console.log('slide change')
-    }
+  props: {
+    sliderItems: {
+      type: Array,
+      default: () => [],
+    },
+  },
+  data() {
     const movies = [
       {
         title: 'News of the World',
@@ -147,8 +149,6 @@ export default {
 
     return {
       movies,
-      onSwiper,
-      onSlideChange,
       pagination: {
         clickable: false,
         renderBullet: function (index, className) {
@@ -158,24 +158,10 @@ export default {
       modules: [Pagination],
     }
   },
+  computed: {
+    updatedSliderItems() {
+      return [...this.sliderItems]
+    },
+  },
 }
 </script>
-
-<style scoped>
-/* Custom Swiper Styles */
-/* .swiper-pagination-bullet {
-  background: gray;
-  opacity: 0.5;
-  transition: all 0.3s;
-}
-
-.swiper-pagination-bullet-active {
-  background: #e74c3c;
-  opacity: 1;
-}
-
-.swiper-button-prev,
-.swiper-button-next {
-  color: white;
-} */
-</style>
