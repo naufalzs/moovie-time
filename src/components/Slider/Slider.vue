@@ -14,13 +14,16 @@
           <div
             class="relative text-white w-[520px] h-[320px] bg-black shadow-lg px-5 py-7 text-base float-right"
           >
-            <div class="absolute -top-5 -left-[22px] w-[246px] h-[360px]">
+            <router-link
+              :to="`/detail/${movie?.id}`"
+              class="absolute -top-5 -left-[22px] w-[246px] h-[360px]"
+            >
               <img
                 :src="`https://image.tmdb.org/t/p/w300/${movie?.poster_path}`"
-                alt=""
+                :alt="`${movie?.original_title}`"
                 class="inset-0 w-full h-full object-cover"
               />
-            </div>
+            </router-link>
             <div class="w-[250px] float-right">
               <div class="flex gap-1">
                 <img alt="star logo" src="@/assets/icon-star.svg" width="16" height="16" />
@@ -30,7 +33,7 @@
               <div class="mt-1 flex flex-col gap-3">
                 <h3 class="text-3xl font-medium">{{ movie?.original_title }}</h3>
                 <p class="">
-                  {{ movie?.release_date?.split('-')[0] }} • {{ movie.genre || 'Sci-fi' }}
+                  {{ movie?.release_date?.split('-')[0] }} • {{ movie?.genres?.[0]?.name }}
                 </p>
                 <p class="text-xs line-clamp-5">{{ movie?.overview }}</p>
               </div>

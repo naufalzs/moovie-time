@@ -17,9 +17,10 @@ const router = createRouter({
       component: ExploreView,
     },
     {
-      path: '/detail',
+      path: '/detail/:id',
       name: 'detail',
       component: DetailView,
+      props: true,
     },
   ],
 })

@@ -3,7 +3,7 @@
     <div class="relative w-full h-[330px]">
       <img
         :src="`https://image.tmdb.org/t/p/w300/${updatedData?.poster_path}`"
-        alt=""
+        :alt="`${updatedData?.original_title}`"
         class="inset-0 w-full h-full object-cover"
       />
       <div class="absolute right-0 top-0 bg-[#1E232B]/80 px-2.5 py-1 text-white font-bold">
@@ -16,12 +16,13 @@
           <img alt="star logo" src="@/assets/icon-star.svg" width="32" height="32" />
           <div class="text-2xl">{{ updatedData?.vote_average?.toFixed(1) }}</div>
         </div>
-        <div class="text-lg">Action</div>
-        <div
+        <div class="text-lg">{{ updatedData?.genres?.[0]?.name }}</div>
+        <router-link
+          :to="`/detail/${updatedData?.id}`"
           class="font-semibold py-2 px-4 rounded-full bg-[#FF0000] hover:bg-red-400 text-white uppercase cursor-pointer"
         >
           view
-        </div>
+        </router-link>
       </div>
     </div>
 
