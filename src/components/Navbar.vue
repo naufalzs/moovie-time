@@ -19,7 +19,10 @@
         </div>
       </div>
       <ul class="flex items-center gap-9">
-        <li class="cursor-pointer uppercase hover:text-white">Categories</li>
+        <li class="cursor-pointer flex gap-3 uppercase hover:text-white">
+          <img alt="categories icon" src="@/assets/icon-categories.svg" width="20" height="16" />
+          Categories
+        </li>
         <li class="cursor-pointer uppercase hover:text-white">Movies</li>
         <li class="cursor-pointer uppercase hover:text-white">TV Shows</li>
         <li class="cursor-pointer uppercase hover:text-white">Login</li>
