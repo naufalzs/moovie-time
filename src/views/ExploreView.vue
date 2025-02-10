@@ -17,11 +17,7 @@
             <div class="px-4.5 py-[20px] font-semibold">Sort Result By</div>
             <hr />
             <div class="px-4.5 py-[20px]">
-              <input
-                type="text"
-                placeholder="Find movie"
-                class="cursor-pointer grow px-3 focus:outline-none bg-transparent text-white"
-              />
+              <dropdown @update-sort="updateSortOrder" />
             </div>
             <hr />
             <div class="px-4.5 py-[20px] font-semibold">Genres</div>
@@ -74,18 +70,21 @@
 <script>
 import Navbar from '../components/Navbar.vue'
 import Card from '../components/Card.vue'
+import Dropdown from '../components/SortDropdown.vue'
 import api from '../http/api'
 
 export default {
   components: {
     Navbar,
     Card,
+    Dropdown,
   },
   data() {
     return {
       movies: [],
       selectedGenres: [],
       genres: [],
+      selectedSortBy: 'popularity.desc',
     }
   },
   mounted() {
@@ -99,8 +98,10 @@ export default {
           ? `&with_genres=${this.selectedGenres.join(',')}`
           : ''
 
+        const sortQuery = `&sort_by=${this.selectedSortBy}`
+
         const { data } = await api.get(
-          `discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc${genreQuery}`,
+          `discover/movie?include_adult=false&include_video=false&language=en-US&page=1&${sortQuery}${genreQuery}`,
         )
         this.movies = data?.results || []
       } catch (error) {
@@ -114,6 +115,10 @@ export default {
       } catch (error) {
         console.error('Error fetching movies:', error)
       }
+    },
+    updateSortOrder(value) {
+      this.selectedSortBy = value
+      this.fetchMovies()
     },
   },
   watch: {
