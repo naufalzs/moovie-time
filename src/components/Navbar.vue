@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-[#fff]/05 w-full z-50 py-4">
+  <nav class="relative bg-[#fff]/5 w-full z-50 py-4">
     <div class="mx-auto w-full max-w-7xl flex items-center justify-between px-4 lg:px-2 gap-10">
       <div class="flex grow items-center gap-8">
         <!-- <h1 class="text-2xl font-bold">Moovie</h1> -->
