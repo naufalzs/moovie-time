@@ -8,7 +8,7 @@
         width="88"
         height="24"
       />
-      <div>Made with Vue</div>
+      <div>Made with Vue Framework</div>
     </div>
   </footer>
 </template>
