@@ -1,11 +1,13 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
 import Navbar from '../components/Navbar.vue'
+import Slider from '../components/Slider/Slider.vue'
 </script>
 
 <template>
   <div class="bg-[#292E36]">
     <Navbar />
   </div>
-  <main>hehe</main>
+  <main>
+    <Slider />
+  </main>
 </template>
