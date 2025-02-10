@@ -4,3 +4,7 @@ body {
   font-size: 14px;
   font-family: 'Montserrat', sans-serif;
 }
+
+hr {
+  border-color: #ffffff0d;
+}

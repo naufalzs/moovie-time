@@ -16,7 +16,7 @@
         </div>
         <div class="text-lg">Action</div>
         <div
-          class="font-semibold py-2 px-4 rounded-full bg-[#FF0000] text-white uppercase cursor-pointer"
+          class="font-semibold py-2 px-4 rounded-full bg-[#FF0000] hover:bg-red-400 text-white uppercase cursor-pointer"
         >
           view
         </div>

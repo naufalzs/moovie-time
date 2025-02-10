@@ -13,12 +13,8 @@
           >
             <input type="radio" :value="option.value" v-model="discoverOption" class="hidden" />
             <div
-              :class="
-                discoverOption === option.value
-                  ? 'bg-[#FF0000] border-[#FF0000]'
-                  : 'bg-[#21252B] border-[#21252B]'
-              "
-              class="font-semibold py-2 px-4 rounded-full border-2 flex items-center justify-center transition"
+              :class="discoverOption === option.value ? 'bg-[#FF0000] ' : 'bg-[#21252B] '"
+              class="font-semibold py-2 px-4 rounded-full flex items-center justify-center transition"
             >
               {{ option.label }}
             </div>

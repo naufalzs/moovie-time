@@ -4,7 +4,7 @@
       <div class="flex grow items-center gap-8">
         <!-- <h1 class="text-2xl font-bold">Moovie</h1> -->
         <img alt="MoovieTime logo" src="@/assets/moovie-time-logo.svg" width="112" height="31" />
-        <div
+        <label
           class="relative w-full bg-[#24282F] px-3 py-[6px] rounded-[4px] focus-within:ring-1 focus-within:ring-gray-600 flex gap-3 justify-between"
         >
           <div class="grow flex gap-3">
@@ -16,7 +16,7 @@
             />
           </div>
           <img alt="search icon" src="@/assets/icon-search.svg" width="16" height="16" />
-        </div>
+        </label>
       </div>
       <ul class="flex items-center gap-9">
         <li class="cursor-pointer flex gap-3 uppercase hover:text-white">
